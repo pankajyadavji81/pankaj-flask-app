@@ -3,39 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pankaj's Flask App</title>
+    <title>Pankaj | Python Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0f172a; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        body { 
+            background-color: #0b1120; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-nav { 
+            background: rgba(15, 23, 42, 0.8); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+        .nav-link { position: relative; transition: all 0.3s; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background: #3b82f6;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        /* Smooth scrolling for the whole page */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="text-slate-200 font-sans">
+<body class="text-slate-200 antialiased">
 
-    <nav class="fixed w-full z-50 glass top-0 left-0">
+    <nav class="fixed w-full z-50 glass-nav top-0 left-0 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                FlaskMaster
-            </div>
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="/" class="hover:text-blue-400 transition">Home</a>
-                <a href="/about" class="hover:text-blue-400 transition">About</a>
-                <a href="/project" class="hover:text-blue-400 transition">Projects</a>
-                <a href="/contact" class="hover:text-blue-400 transition">Contact</a>
-
-            </div>
-            <a href="https://github.com/pankajyadavji81" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-lg text-sm font-semibold transition shadow-lg shadow-blue-500/20">
-                GitHub
+            <a href="/" class="group flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-xl flex items-center justify-center font-bold text-white group-hover:rotate-12 transition-transform shadow-lg shadow-blue-500/20">
+                    P
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-white">
+                    Pankaj<span class="text-blue-500">.dev</span>
+                </span>
             </a>
+
+            <div class="hidden md:flex items-center space-x-10">
+                <a href="/" class="nav-link text-sm font-semibold hover:text-white text-slate-400">Home</a>
+                <a href="/about" class="nav-link text-sm font-semibold hover:text-white text-slate-400">About</a>
+                <a href="/project" class="nav-link text-sm font-semibold hover:text-white text-slate-400">Projects</a>
+                <a href="/contact" class="nav-link text-sm font-semibold hover:text-white text-slate-400">Contact</a>
+                
+                <a href="https://github.com/pankajyadavji81" target="_blank" class="ml-4 flex items-center gap-2 bg-white/5 hover:bg-white/10 px-5 py-2.5 rounded-full border border-white/10 text-sm font-bold transition-all hover:scale-105 active:scale-95">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+
+            <button class="md:hidden text-slate-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
     </nav>
 
-    <main class="pt-20">
+    <main class="pt-24 min-h-[80vh]">
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="py-10 text-center border-t border-white/5 mt-20">
-        <p class="text-slate-500 text-sm">© 2026 Pankaj Python Dev. Built with Flask & Tailwind.</p>
+    <footer class="mt-32 border-t border-white/5 bg-slate-900/50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+            <div>
+                <p class="text-white font-bold text-lg">Pankaj Yadav</p>
+                <p class="text-slate-500 text-sm mt-1">Python Backend Developer & UI Enthusiast</p>
+            </div>
+            
+            <div class="flex gap-8 text-sm font-medium text-slate-400">
+                <a href="/" class="hover:text-blue-500 transition">Home</a>
+                <a href="/project" class="hover:text-blue-500 transition">Projects</a>
+                <a href="/contact" class="hover:text-blue-500 transition">Contact</a>
+            </div>
+
+            <div class="text-slate-500 text-sm">
+                &copy; 2026 Crafted with <span class="text-red-500">❤️</span> using Flask
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-24 bg-blue-600/10 blur-[120px]"></div>
     </footer>
 
 </body>

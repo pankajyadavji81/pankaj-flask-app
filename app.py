@@ -17,6 +17,10 @@ def about():
 def project():
     return render_template("project.html")
 
+@app.route("/work")
+def work():
+    return render_template("work.html")    
+
 
 # CONTACT PAGE + EMAIL SENDING
 @app.route("/contact", methods=["GET", "POST"])
