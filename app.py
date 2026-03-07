@@ -1,3 +1,5 @@
+import smtplib
+
 from flask import Flask, render_template, request, jsonify
 import smtplib
 
@@ -28,33 +30,39 @@ def contact():
 
     if request.method == "POST":
 
-        name = request.form["name"]
-        email = request.form["email"]
-        message = request.form["message"]
+        try:
+            name = request.form["name"]
+            email = request.form["email"]
+            subject = request.form["subject"]
+            message = request.form["message"]
 
-        sender_email = "pankajy.tech@gmail.com"
-        password = "zcxz ftzg pedr dxah"
+            sender_email = "pankajy.tech@gmail.com"
+             password = "abcd efgh ijkl mnop"
 
-        text = f"""
-        New Contact Message
+            text = f"""
+Subject: New Contact Form Message
 
-        Name: {name}
-        Email: {email}
+Name: {name}
+Email: {email}
+Subject: {subject}
 
-        Message:
-        {message}
-        """
+Message:
+{message}
+"""
 
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.starttls()
 
-        server.login(sender_email, password)
+            server.login(sender_email, password)
 
-        server.sendmail(sender_email, sender_email, text)
+            server.sendmail(sender_email, sender_email, text)
 
-        server.quit()
+            server.quit()
 
-        return "Message Sent Successfully!"
+            return "Message Sent Successfully!"
+
+        except Exception as e:
+            return f"Error: {str(e)}"
 
     return render_template("contact.html")
 
