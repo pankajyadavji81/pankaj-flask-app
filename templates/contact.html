@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Get In <span class="text-blue-500">Touch</span></h1>
+        <p class="text-slate-400">Have a question or want to work together? Send me a message!</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="mb-6 p-4 rounded-xl text-center {% if category == 'success' %}bg-emerald-500/20 text-emerald-400 border border-emerald-500/30{% else %}bg-red-500/20 text-red-400 border border-red-500/30{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="glass p-10 rounded-3xl border border-white/10">
+            <h3 class="text-2xl font-bold mb-6 text-white">Contact Information</h3>
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-slate-400">Email Me</p>
+                        <p class="text-white font-medium">pankajy.tech@gmail.com</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+
+        <form action="/contact" method="POST" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">Name</label>
+                    <input type="text" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 text-white transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-400 mb-2">Email</label>
+                    <input type="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 text-white transition">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Subject</label>
+                <input type="text" name="subject" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 text-white transition">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-400 mb-2">Message</label>
+                <textarea name="message" rows="5" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 text-white transition"></textarea>
+            </div>
+            <button type="submit" class="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+                Send Message
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
