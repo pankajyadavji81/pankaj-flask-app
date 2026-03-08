@@ -2,6 +2,10 @@ import os
 from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 from flask_mail import Mail, Message
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # 1. App Initialization (Sirf ek baar)
 app = Flask(__name__)
 app.secret_key = 'pankaj_secret_key' 
@@ -10,9 +14,12 @@ app.secret_key = 'pankaj_secret_key'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'pankajy.tech@gmail.com' 
-# Yahan apna 16-digit Google App Password paste karein
-app.config['MAIL_PASSWORD'] = 'cxbjgxoyazfcnhuc' 
+# app.config['MAIL_USERNAME'] = 'pankajy.tech@gmail.com' 
+# # Yahan apna 16-digit Google App Password paste karein
+# app.config['MAIL_PASSWORD'] = 'cxbjgxoyazfcnhuc' 
+
+app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
 app.config['MAIL_DEFAULT_SENDER'] = ('Portfolio Contact', 'pankajy.tech@gmail.com')
 
 mail = Mail(app)
