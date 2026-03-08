@@ -14,9 +14,7 @@ app.secret_key = 'pankaj_secret_key'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-# app.config['MAIL_USERNAME'] = 'pankajy.tech@gmail.com' 
-# # Yahan apna 16-digit Google App Password paste karein
-# app.config['MAIL_PASSWORD'] = 'cxbjgxoyazfcnhuc' 
+
 
 app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
 app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
